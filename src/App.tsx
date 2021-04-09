@@ -1,35 +1,35 @@
+import { useState } from 'react';
+import Modal from 'react-modal';
+import { Dashborad } from "./components/Dashboard";
 import { Header } from "./components/Header";
+import { NewTransactionModal } from './components/NewTransactionModal';
+
 import { GlobalStyle } from "./styles/global";
 
+Modal.setAppElement('#root');
+
 export function App() {
+  const [isNewTransactionModalOpen, setIsNewTransactionModalOpen] = useState(false);
+
+  function handleOpenNewTransactionModal() {
+      setIsNewTransactionModalOpen(true);
+  }
+
+  function handleCloseNewTransactionModal() {
+      setIsNewTransactionModalOpen(false);
+  }
+
   return (
     <>
-      <Header />
+      <Header onOpenNewTransactionModal={handleOpenNewTransactionModal} />
+      <Dashborad />
+
+      <NewTransactionModal 
+        isOpen={isNewTransactionModalOpen} 
+        onRequestClose={handleCloseNewTransactionModal} 
+      />
+
       <GlobalStyle />
     </>
   );
 }
-
-
-/*
-import styled from 'styled-components';
-
-  Criação de um componente com estilização.
-  Componentes sempre com a primeira letra maiúscula.
-  Após o h1 são duas crases ``.
-
-const Title = styled.h1`
-  font-size: 64px;
-  color: #8257e6;
-`
-
-export function App() {
-  return (
-    <div className="App">
-      <Title>
-        Hello World
-      </Title>
-    </div>
-  );
-}
-*/

@@ -29,3 +29,18 @@ export const Content = styled.div`
         }
     }
 `;
+
+
+
+/*
+import styled from 'styled-components';
+
+  Criação de um componente com estilização.
+  Componentes sempre com a primeira letra maiúscula.
+  Após o h1 são duas crases ``.
+
+const Title = styled.h1`
+  font-size: 64px;
+  color: #8257e6;
+`
+*/
