@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { api } from "../../services/api";
+import { NewTransaction } from "../NewTransaction";
 import { Container } from "./styles";
 
 export function TransactionsTable() {
@@ -21,10 +22,11 @@ export function TransactionsTable() {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Desenvolvimento de site</td>
+                        {/* <td>Desenvolvimento de site</td>
                         <td className="transaction-entrada">R$12.000,00</td>
                         <td>Venda</td>
-                        <td>13/04/2021</td>
+                        <td>13/04/2021</td> */}
+                        <NewTransaction />
                     </tr>
                     <tr>
                         <td>Hamburger</td>

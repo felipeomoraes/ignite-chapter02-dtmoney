@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Modal from 'react-modal';
-import { Dashborad } from "./components/Dashboard";
+import { Dashboard } from "./components/Dashboard";
 import { Header } from "./components/Header";
 import { NewTransactionModal } from './components/NewTransactionModal';
 
@@ -22,7 +22,7 @@ export function App() {
   return (
     <>
       <Header onOpenNewTransactionModal={handleOpenNewTransactionModal} />
-      <Dashborad />
+      <Dashboard />
 
       <NewTransactionModal 
         isOpen={isNewTransactionModalOpen} 
