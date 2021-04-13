@@ -4,23 +4,10 @@ import { TransactionsContext } from "../../TransactionsContext";
 import { Transaction } from "../Transaction";
 import { Container } from "./styles";
 
-interface TransactionProps {
-    id: number;
-    title: string;
-    amount: number;
-    type: string;
-    category: string;
-    createdAt: string;
-}
+
 
 export function TransactionsTable() {
-    const data = useContext(TransactionsContext);
-    const [transactions, setTransactions] = useState<TransactionProps[]>([])
-
-    useEffect(() => {
-        api.get('/transactions')
-            .then(response => setTransactions(response.data.transactions))
-    }, []);
+    const transactions = useContext(TransactionsContext);
 
     return (
         <Container>
