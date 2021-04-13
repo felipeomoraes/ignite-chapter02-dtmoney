@@ -26,11 +26,11 @@ export const Container = styled.div`
                 color: var(--text-title);
             }
 
-            &.transaction-entrada {
+            &.deposit {
                 color: var(--green);
             }
 
-            &.transaction-saida {
+            &.withdraw {
                 color: var(--red)
             }
         }

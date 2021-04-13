@@ -1,12 +1,25 @@
-import { useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { api } from "../../services/api";
-import { NewTransaction } from "../NewTransaction";
+import { TransactionsContext } from "../../TransactionsContext";
+import { Transaction } from "../Transaction";
 import { Container } from "./styles";
 
+interface TransactionProps {
+    id: number;
+    title: string;
+    amount: number;
+    type: string;
+    category: string;
+    createdAt: string;
+}
+
 export function TransactionsTable() {
+    const data = useContext(TransactionsContext);
+    const [transactions, setTransactions] = useState<TransactionProps[]>([])
+
     useEffect(() => {
         api.get('/transactions')
-            .then(response => console.log(response.data))
+            .then(response => setTransactions(response.data.transactions))
     }, []);
 
     return (
@@ -21,13 +34,28 @@ export function TransactionsTable() {
                     </tr>
                 </thead>
                 <tbody>
+                    {transactions.map(transaction => {
+                        return (
+                            <Transaction 
+                                key={String(transaction.id)}
+                                title={transaction.title}
+                                amount={transaction.amount}
+                                type={transaction.type}
+                                category={transaction.category}
+                                createdAt={transaction.createdAt}
+                            />
+                        );
+                    })} 
+
+                    {/* 
                     <tr>
-                        {/* <td>Desenvolvimento de site</td>
+                        <td>Desenvolvimento de site</td>
                         <td className="transaction-entrada">R$12.000,00</td>
                         <td>Venda</td>
-                        <td>13/04/2021</td> */}
-                        <NewTransaction />
+                        <td>13/04/2021</td>
                     </tr>
+                    
+                    <NewTransaction />
                     <tr>
                         <td>Hamburger</td>
                         <td className="transaction-saida">- R$59,00</td>
@@ -46,6 +74,7 @@ export function TransactionsTable() {
                         <td>Venda</td>
                         <td>15/03/2021</td>
                     </tr>
+                    */}
                 </tbody>
             </table>
         </Container>
