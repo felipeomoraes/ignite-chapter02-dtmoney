@@ -11,7 +11,7 @@ createServer({
   seeds(server) {
     server.db.loadData({
       transactions: [
-        {
+        /* {
           id: 1,
           title: 'Desenvolvimento de site',
           type: 'deposit',
@@ -26,7 +26,7 @@ createServer({
           category: 'Alimentação',
           amount: 59,
           createdAt: new Date('2021-02-14 1:00:00')
-        }
+        } */
       ]
     })
   },
@@ -40,9 +40,7 @@ createServer({
 
     this.post('/transactions', (schema, request) =>{
       const data = JSON.parse(request.requestBody);
-      schema.create('transaction', data)
-      return this.schema.all('transaction')
-      /* return schema.create('transaction', data) */
+      return schema.create('transaction', data)
     })
   }
 })

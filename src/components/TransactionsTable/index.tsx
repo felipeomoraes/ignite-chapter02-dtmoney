@@ -1,13 +1,10 @@
-import { useContext, useEffect, useState } from "react";
-import { api } from "../../services/api";
+import { useContext} from "react";
 import { TransactionsContext } from "../../TransactionsContext";
 import { Transaction } from "../Transaction";
 import { Container } from "./styles";
 
-
-
 export function TransactionsTable() {
-    const transactions = useContext(TransactionsContext);
+    const { transactions } = useContext(TransactionsContext);
 
     return (
         <Container>
@@ -25,11 +22,7 @@ export function TransactionsTable() {
                         return (
                             <Transaction 
                                 key={String(transaction.id)}
-                                title={transaction.title}
-                                amount={transaction.amount}
-                                type={transaction.type}
-                                category={transaction.category}
-                                createdAt={transaction.createdAt}
+                                transaction={transaction}
                             />
                         );
                     })} 

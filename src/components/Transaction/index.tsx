@@ -1,13 +1,16 @@
 
 interface TransactionProps {
-    title: string;
-    amount: number;
-    type: string;
-    category: string;
-    createdAt: string;
+    transaction: {
+        id: number;
+        title: string;
+        amount: number;
+        type: string;
+        category: string;
+        createdAt: string;
+    }
 }
 
-export function Transaction(transaction: TransactionProps) {
+export function Transaction({transaction}: TransactionProps) {
     return (
         <tr>
             <td>{transaction.title}</td>
@@ -15,7 +18,7 @@ export function Transaction(transaction: TransactionProps) {
                 {new Intl.NumberFormat('pt-BR', {
                     style: 'currency',
                     currency: 'BRL'
-                }).format(transaction.amount)} {/* Funciona de forma semelhante ao .toLocaleString() */}
+                }).format(transaction.type === 'deposit' ? transaction.amount : -transaction.amount)} {/* Funciona de forma semelhante ao .toLocaleString() */}
             </td>
             <td>{transaction.category}</td>
             <td>
