@@ -13,6 +13,10 @@ export const Container = styled.div`
             padding: 1rem 2rem;
             text-align: left;
             line-height: 1.5rem;
+
+            &:last-child {
+                padding: 1rem 0;
+            }
         }
 
         td {
@@ -24,6 +28,25 @@ export const Container = styled.div`
 
             &:first-child {
                 color: var(--text-title);
+            }
+
+            &:last-child {
+                padding: 1rem 0.25rem;
+
+                button {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: transparent;
+                    border-style: hidden;
+
+                    img {
+                        width: 20px;
+                        height: 20px;
+                    }
+                }
+
+                
             }
 
             &.deposit {

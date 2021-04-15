@@ -1,3 +1,4 @@
+import saidasImg from '../../assets/saidas.svg'
 
 interface TransactionProps {
     transaction: {
@@ -25,6 +26,11 @@ export function Transaction({transaction}: TransactionProps) {
                 {new Intl.DateTimeFormat('pt-BR',).format(
                     new Date(transaction.createdAt)
                 )}
+            </td>
+            <td>
+                <button>
+                    <img src={saidasImg} alt=""/>
+                </button>
             </td>
         </tr>
     );
