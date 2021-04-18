@@ -40,9 +40,13 @@ export const Container = styled.div`
                     background-color: transparent;
                     border-style: hidden;
 
+                    &:hover {
+                        filter: brightness(0.9);
+                    }
+
                     img {
-                        width: 20px;
-                        height: 20px;
+                        width: 30px;
+                        height: 30px;
                     }
                 }
 

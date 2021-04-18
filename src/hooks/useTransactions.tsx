@@ -21,6 +21,7 @@ interface TransactionProps {
 
 type TransactionInput = Omit<TransactionProps, 'id' | 'createdAt'>;
 
+type TransactionRemove = Pick<TransactionProps, 'id'>;
 
 interface TransactionsProviderProps {
     children: ReactNode;
@@ -29,6 +30,7 @@ interface TransactionsProviderProps {
 interface TransactionsContextData {
     transactions: TransactionProps[];
     createTransaction: (transaction: TransactionInput) => Promise<void>;
+    removeTransaction: (transaction: TransactionRemove) => Promise<void>;
 }
 
 const TransactionsContext = createContext<TransactionsContextData>(
@@ -49,17 +51,26 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
             createdAt: new Date()
         });
         const { transaction } = response.data;
+        console.log(response.data);
 
         setTransactions([
             ...transactions,
             transaction
         ]);
+    }
 
-        /* console.log(response.data); */
+    async function removeTransaction(transactionRemove: TransactionRemove) {
+        const response = await api.post('/transactions/remove', {
+            ...transactionRemove
+        });
+
+        const { id } = response.data;
+
+        setTransactions(transactions.filter(element => element.id !== id));
     }
 
     return (
-        <TransactionsContext.Provider value={{ transactions, createTransaction }}>
+        <TransactionsContext.Provider value={{ transactions, createTransaction, removeTransaction }}>
             {children}
         </TransactionsContext.Provider>
     )
@@ -67,6 +78,5 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
 
 export function useTransactions() {
     const context = useContext(TransactionsContext);
-
     return context;
 }
